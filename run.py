@@ -82,7 +82,7 @@ try:
     )
 
     # Navigate step by step, creating any missing folder along the way
-    target_dirs = ["htdocs","files","charts","sales_chart"]
+    target_dirs = ["htdocs","files","charts","sales_charts"]
 
     for d in target_dirs:
         try:
