@@ -81,7 +81,16 @@ try:
         os.environ["FTP_PASS"]
     )
 
-    ftp.cwd("/htdocs/charts/sales_chart")
+    # Navigate step by step, creating any missing folder along the way
+    target_dirs = ["htdocs", "charts", "sales_chart"]
+
+    for d in target_dirs:
+        try:
+            ftp.cwd(d)
+        except Exception:
+            print(f"Folder '{d}' not found, creating it...")
+            ftp.mkd(d)
+            ftp.cwd(d)
 
     with open("sales_chart.png", "rb") as file:
         ftp.storbinary(
